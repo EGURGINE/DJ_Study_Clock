@@ -11,6 +11,8 @@ int hour = 0;
 int min = 0;
 int sec = 0;
 
+bool darkMod = false;
+
 int OnPaint(HWND hWnd, WPARAM wParam, LPARAM lParam);
 int OnTimer(HWND hWnd, WPARAM wParam, LPARAM lParam);
 
@@ -55,7 +57,16 @@ int OnPaint(HWND hWnd, WPARAM wParam, LPARAM lParam)
     SelectObject(hdc, (HFONT)hFont[0]);
    /* SelectObject(hdc, (HFONT)hFont[1]);
     DrawNumber(hdc, 40, 0, 0, 9875443);*/
-    SetTextColor(hdc, RGB(rand() % 236, rand() % 236, rand() % 236));
+    if (darkMod)
+    {
+        SetTextColor(hdc, RGB(0, 0, 0));
+        SetBkColor(hdc, RGB(35, 100, 40));
+    }
+    else 
+    {
+        SetTextColor(hdc, RGB(0, 0, 0));
+        SetBkColor(hdc, RGB(222, 222, 222));
+    }
 
     if (hour>=10) DrawNumber(hdc, 40, 80, 60, hour);
     else
@@ -64,7 +75,6 @@ int OnPaint(HWND hWnd, WPARAM wParam, LPARAM lParam)
         DrawNumber(hdc, 40, 210, 60, hour);
 
     }    
-    SetTextColor(hdc, RGB(rand() % 236, rand() % 236, rand() % 236));
 
     if (min>=10) DrawNumber(hdc, 40, 350, 60, min);
     else
@@ -72,7 +82,6 @@ int OnPaint(HWND hWnd, WPARAM wParam, LPARAM lParam)
         DrawNumber(hdc, 40, 350, 60, 0); 
         DrawNumber(hdc, 40, 480, 60, min);
     }
-    SetTextColor(hdc, RGB(rand() % 236, rand() % 236, rand() % 236));
 
     if (sec>=10) DrawNumber(hdc, 40, 650, 60, sec);
     else

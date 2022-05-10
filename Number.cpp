@@ -1,9 +1,6 @@
 #include "pch.h"
 #include "Number.h"
 
-int R[5] = {255, 0, 0, 255, 0};
-int G[5] = {0, 0, 255, 255, 255};
-int B[5] = {0, 255, 0, 0, 255};
 //0~9±îÁö ¼ö
 void NumOutput(HDC hdc, int x, int y, int num, int fontysize)
 {
@@ -79,7 +76,6 @@ void NumOutput(HDC hdc, int x, int y, int num, int fontysize)
 	
 	for (int i = 0; i < 5; i++)
 	{
-		SetBkColor(hdc, RGB(rand()%236,rand()%236,rand()%236));
 		TextOut(hdc, x, y + i * fontysize * 0.5f, 
 			    strTime[num][i], wcslen(strTime[num][i]));
 	}
