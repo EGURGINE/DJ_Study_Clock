@@ -11,7 +11,7 @@ int hour = 0;
 int min = 0;
 int sec = 0;
 
-bool darkMod = false;
+bool darkMod = false; //다크모드 화인
 
 int OnPaint(HWND hWnd, WPARAM wParam, LPARAM lParam);
 int OnTimer(HWND hWnd, WPARAM wParam, LPARAM lParam);
@@ -61,18 +61,26 @@ int OnPaint(HWND hWnd, WPARAM wParam, LPARAM lParam)
     {
         SetTextColor(hdc, RGB(0, 0, 0));
         SetBkColor(hdc, RGB(35, 100, 40));
+		SetDCBrushColor(hdc, RGB(35, 100, 40));
+        SetClassLong(hWnd, GCL_HBRBACKGROUND, (LONG)GetStockObject(DC_BRUSH));
+        InvalidateRect(hWnd, NULL, TRUE);
+
     }
     else 
     {
         SetTextColor(hdc, RGB(0, 0, 0));
         SetBkColor(hdc, RGB(222, 222, 222));
+        SetDCBrushColor(hdc, RGB(222, 222, 222));
+        SetClassLong(hWnd, GCL_HBRBACKGROUND, (LONG)GetStockObject(DC_BRUSH));
+        InvalidateRect(hWnd, NULL, TRUE);
+
     }
 
     if (hour>=10) DrawNumber(hdc, 40, 80, 60, hour);
     else
     {
         DrawNumber(hdc, 40, 80, 60, 0);
-        DrawNumber(hdc, 40, 210, 60, hour);
+        DrawNumber(hdc, 40, 220, 60, hour);
 
     }    
 
@@ -80,14 +88,14 @@ int OnPaint(HWND hWnd, WPARAM wParam, LPARAM lParam)
     else
     {
         DrawNumber(hdc, 40, 350, 60, 0); 
-        DrawNumber(hdc, 40, 480, 60, min);
+        DrawNumber(hdc, 40, 490, 60, min);
     }
 
     if (sec>=10) DrawNumber(hdc, 40, 650, 60, sec);
     else
     {
         DrawNumber(hdc, 40, 650, 60, 0);
-        DrawNumber(hdc, 40, 780, 60, sec);
+        DrawNumber(hdc, 40, 790, 60, sec);
     }
 
     EndPaint(hWnd, &ps);
@@ -116,6 +124,18 @@ int OnDestroy(HWND hWnd, WPARAM wParam, LPARAM lParam)
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+    if (darkMod)
+    {
+        SetClassLong(hWnd, GCL_HBRBACKGROUND, (LONG)GetStockObject(DC_BRUSH));
+        InvalidateRect(hWnd, NULL, TRUE);
+
+    }
+    else
+    {
+        SetClassLong(hWnd, GCL_HBRBACKGROUND, (LONG)GetStockObject(DC_BRUSH));
+        InvalidateRect(hWnd, NULL, TRUE);
+
+    }
     switch (message)
     {
     case WM_CREATE: return OnCreate(hWnd, wParam, lParam);
