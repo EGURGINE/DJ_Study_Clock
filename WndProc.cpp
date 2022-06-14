@@ -57,7 +57,7 @@ int OnPaint(HWND hWnd, WPARAM wParam, LPARAM lParam)
     SelectObject(hdc, (HFONT)hFont[0]);
    /* SelectObject(hdc, (HFONT)hFont[1]);
     DrawNumber(hdc, 40, 0, 0, 9875443);*/
-    if (darkMod)
+    /*if (darkMod)
     {
         SetTextColor(hdc, RGB(0, 0, 0));
         SetBkColor(hdc, RGB(35, 100, 40));
@@ -74,7 +74,7 @@ int OnPaint(HWND hWnd, WPARAM wParam, LPARAM lParam)
         SetClassLong(hWnd, GCL_HBRBACKGROUND, (LONG)GetStockObject(DC_BRUSH));
         InvalidateRect(hWnd, NULL, TRUE);
 
-    }
+    }*/
 
     if (hour>=10) DrawNumber(hdc, 40, 80, 60, hour);
     else
@@ -124,7 +124,7 @@ int OnDestroy(HWND hWnd, WPARAM wParam, LPARAM lParam)
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    if (darkMod)
+    /*if (darkMod)
     {
         SetClassLong(hWnd, GCL_HBRBACKGROUND, (LONG)GetStockObject(DC_BRUSH));
         InvalidateRect(hWnd, NULL, TRUE);
@@ -135,7 +135,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         SetClassLong(hWnd, GCL_HBRBACKGROUND, (LONG)GetStockObject(DC_BRUSH));
         InvalidateRect(hWnd, NULL, TRUE);
 
-    }
+    }*/
     switch (message)
     {
     case WM_CREATE: return OnCreate(hWnd, wParam, lParam);
